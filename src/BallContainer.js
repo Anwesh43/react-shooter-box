@@ -9,11 +9,12 @@ const Bar = ({w, h, cb}) => {
 }
 
 const BallContainer = (props) => {
-    const {addElement, removeElement, elements} = useContainerState('ball')
+    const {addElement, elements} = useContainerState('ball')
+    console.log(elements)
     const {w, h} = useDimension()
     return <div>
       <Bar w = {w} h = {h} cb = {addElement}/>
-      {elements.map((element) => <Ball scale = {scale} w = {w} h = {h} onStop = {() => removeElement(element)}/>)}
+      {elements.map((element) => <Ball scale = {element.scale} key = {element.key} w = {w} h = {h}/>)}
     </div>
 }
 
