@@ -69,3 +69,19 @@ export const useStyle = (w, h) => {
 
     }
 } 
+
+export const useContainerState = (label) => {
+   const [elements, setElements] = useState([])
+   const [i, setI] = useState(0)
+   return {
+      addElement() {
+          let curr = i + 1 
+          elements = `${label}_${curr}`
+          setI(i + 1)
+          setElements([...elements, curr])
+      },
+      removeElement(curr) {
+        setElements(elements.filter(element => element !== curr))
+      }
+   }
+}
