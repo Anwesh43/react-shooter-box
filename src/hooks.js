@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react'
 $
-export const useAnimatedScale = (scGap = 0.02, delay = 20) => {
+export const useAnimatedScale = (scGap = 0.02, delay = 20, onStop) => {
     const [scale, setScale] = useState(0)
     const [animated, setAnimated] = useState(false)
     return {
@@ -16,6 +16,7 @@ export const useAnimatedScale = (scGap = 0.02, delay = 20) => {
                         setScale(0)
                         setAnimated(false)
                         clearInterval(interval)
+                        onStop()
                     }
                 }, delay)
             }
@@ -82,6 +83,7 @@ export const useContainerState = (label) => {
       },
       removeElement(curr) {
         setElements(elements.filter(element => element !== curr))
-      }
+      },
+      elements
    }
 }
